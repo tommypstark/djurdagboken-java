@@ -6,7 +6,6 @@ public class AnimalRegister {
     private List<Animal> animals = new ArrayList<>();
 
     public void createAnimal(String name, String species, double age) {
-
         Animal animal = new Animal(name, species, age);
         animals.add(animal);
 
