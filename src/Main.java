@@ -14,8 +14,14 @@ public class Main {
             System.out.println("2. Lista alla djur");
             System.out.println("3. Avsluta");
             System.out.print("\nDitt val: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+
+            String input = scanner.nextLine();
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("\nDu måste skriva ett nummer.");
+                continue;
+            }
 
             if (choice == 1) {
                 System.out.print("\nNamn: ");
@@ -25,8 +31,21 @@ public class Main {
                 String species = scanner.nextLine();
 
                 System.out.print("Ålder: ");
-                double age = scanner.nextDouble();
-                scanner.nextLine();
+
+                String ageInput = scanner.nextLine();
+                double age;
+                try {
+                    age = Double.parseDouble(ageInput);
+
+                    if (age < 0) {
+                        System.out.println("\nÅlder kan inte vara negativ.");
+                        continue;
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println("\nDu måste skriva ett nummer.");
+                    continue;
+                }
 
                 register.createAnimal(name, species, age);
 
