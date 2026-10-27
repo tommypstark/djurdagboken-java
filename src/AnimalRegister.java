@@ -12,8 +12,14 @@ public class AnimalRegister {
     }
 
     public void printAll() {
-        for (int i = 0; i < animals.size(); i++) {
-            Animal animal = animals.get(i);
+        if (animals.isEmpty()) {
+            System.out.println("\n\u001B[91mDet finns inga sparade djur.\u001B[0m");
+            return;
+        }
+
+        System.out.print("\n\u001B[92mVisar alla djur:\u001B[0m");
+
+        for (Animal animal : animals) {
             animal.printInfo();
         }
     }

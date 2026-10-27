@@ -2,64 +2,65 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
+        Scanner input = new Scanner(System.in);
         AnimalRegister register = new AnimalRegister();
-        Scanner scanner = new Scanner(System.in);
+        int val = 0;
 
-        int choice = -1;
-        while (choice != 3) {
+        while (val != 3) {
+            System.out.println("\n\u001B[93m===  DJURDAGBOKEN  ===\u001B[0m");
+            System.out.println("1. Lägg till djur\n2. Visa alla djur\n3. Avsluta");
+            System.out.print("\u001B[93mDitt val: \u001B[0m");
 
-            System.out.println("\n*** DJURDAGBOKEN 0.1 ***");
-            System.out.println("\n1. Lägg till djur");
-            System.out.println("2. Lista alla djur");
-            System.out.println("3. Avsluta");
-            System.out.print("\nDitt val: ");
-
-            String input = scanner.nextLine();
-            try {
-                choice = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("\nDu måste skriva ett nummer.");
+            if (!input.hasNextInt()) {
+                System.out.println("\n\u001B[91mSkriv ett heltal mellan 1 och 3.\u001B[0m");
+                input.nextLine();
                 continue;
             }
 
-            if (choice == 1) {
-                System.out.print("\nNamn: ");
-                String name = scanner.nextLine();
+            val = input.nextInt();
+            input.nextLine();
 
-                System.out.print("Art: ");
-                String species = scanner.nextLine();
+            switch (val) {
+                case 1 -> {
+                    System.out.print("\n\u001B[92mLägg till djur: \u001B[0m");
+                    System.out.print("\nNamn: ");
+                    String name = input.nextLine();
 
-                System.out.print("Ålder: ");
+                    System.out.print("Art: ");
+                    String species = input.nextLine();
 
-                String ageInput = scanner.nextLine();
-                double age;
-                try {
-                    age = Double.parseDouble(ageInput);
+                    System.out.print("Ålder: ");
+                    String ageInput = input.nextLine().replace(',', '.');
 
-                    if (age < 0) {
-                        System.out.println("\nÅlder kan inte vara negativ.");
+                    double age;
+
+                    try {
+                        age = Double.parseDouble(ageInput);
+                    } catch (NumberFormatException e) {
+                        System.out.println("\n\u001B[91mDu måste skriva ett nummer.\u001B[0m");
                         continue;
                     }
 
-                } catch (NumberFormatException e) {
-                    System.out.println("\nDu måste skriva ett nummer.");
-                    continue;
+                    if (age < 0) {
+                        System.out.println("\n\u001B[91mÅlder kan inte vara negativ.\u001B[0m");
+                        continue;
+                    }
+
+
+                    register.createAnimal(name, species, age);
                 }
 
-                register.createAnimal(name, species, age);
+                case 2 -> {
+                    if (register == null) {
+                        System.out.println("Det finns inga sparade djur.");
+                    }
+                    register.printAll();
+                }
 
-            } else if (choice == 2) {
-                register.printAll();
+                case 3 -> System.out.println("\u001B[92mProgrammet avslutas...\u001B[0m");
 
-            } else if (choice == 3) {
-                System.out.println("\nAvslutar...");
-
-            } else {
-                System.out.println("\nOgiltigt val, var god försök igen.");
-
+                default -> System.out.println("\n\u001B[91mVälj ett nummer mellan 1 och 3.\u001B[0m");
             }
         }
-
     }
 }
