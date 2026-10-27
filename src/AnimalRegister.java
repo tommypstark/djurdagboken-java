@@ -24,4 +24,20 @@ public class AnimalRegister {
         }
     }
 
+    public void findAnimal(String name) {
+        boolean found = false;
+
+        for (Animal animal : animals) {
+            if (animal.getName().equalsIgnoreCase(name)) {
+                System.out.print("\u001B[92mDjur hittat:\u001B[0m");
+                animal.printInfo();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("\n\u001B[91mInget djur hittades.\u001B[0m");
+        }
+    }
+
 }
