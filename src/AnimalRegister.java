@@ -8,7 +8,6 @@ public class AnimalRegister {
     public void createAnimal(String name, String species, double age) {
         Animal animal = new Animal(name, species, age);
         animals.add(animal);
-
     }
 
     public void printAll() {
@@ -22,6 +21,15 @@ public class AnimalRegister {
         for (Animal animal : animals) {
             animal.printInfo();
         }
+    }
+
+    public Animal getAnimal(String name) {
+        for (Animal animal : animals) {
+            if (animal.getName().equalsIgnoreCase(name)) {
+                return animal;
+            }
+        }
+        return null;
     }
 
     public void findAnimal(String name) {
@@ -51,6 +59,4 @@ public class AnimalRegister {
 
         System.out.print("\n\u001B[91mInget djur hittades.\u001B[0m\n");
     }
-
-
 }

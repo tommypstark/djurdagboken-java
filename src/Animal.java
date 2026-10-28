@@ -22,6 +22,18 @@ public class Animal {
         return age;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
+    }
+
     public void printInfo() {
         System.out.println("\nNamn:\t" + name);
         System.out.println("Art:\t" + species);
