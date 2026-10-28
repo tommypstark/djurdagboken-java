@@ -29,7 +29,7 @@ public class AnimalRegister {
 
         for (Animal animal : animals) {
             if (animal.getName().equalsIgnoreCase(name)) {
-                System.out.print("\u001B[92mDjur hittat:\u001B[0m");
+                System.out.print("\n\u001B[92mDjur hittat:\u001B[0m");
                 animal.printInfo();
                 found = true;
             }
@@ -39,5 +39,18 @@ public class AnimalRegister {
             System.out.println("\n\u001B[91mInget djur hittades.\u001B[0m");
         }
     }
+
+    public void removeAnimal(String name) {
+        for (Animal animal : animals) {
+            if (animal.getName().equalsIgnoreCase(name)) {
+                animals.remove(animal);
+                System.out.print("\n\u001B[92mDjuret har tagits bort.\u001B[0m\n");
+                return;
+            }
+        }
+
+        System.out.print("\n\u001B[91mInget djur hittades.\u001B[0m\n");
+    }
+
 
 }

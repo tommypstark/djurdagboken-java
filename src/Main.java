@@ -6,13 +6,17 @@ public class Main {
         AnimalRegister register = new AnimalRegister();
         int val = 0;
 
-        while (val != 4) {
-            System.out.println("\n\u001B[93m===  DJURDAGBOKEN  ===\u001B[0m");
-            System.out.println("1. Lägg till djur\n2. Visa alla djur\n3. Sök efter djur\n4. Avsluta");
+        while (val != 5) {
+            System.out.println("\n\u001B[35m***  DJURDAGBOKEN  ***\u001B[0m");
+            System.out.println("\u001B[96m1.\u001B[0m Lägg till djur");
+            System.out.println("\u001B[96m2.\u001B[0m Visa alla djur");
+            System.out.println("\u001B[96m3.\u001B[0m Sök efter djur");
+            System.out.println("\u001B[96m4.\u001B[0m Ta bort djur");
+            System.out.println("\u001B[96m5.\u001B[0m Avsluta");
             System.out.print("\u001B[93mDitt val: \u001B[0m");
 
             if (!input.hasNextInt()) {
-                System.out.println("\n\u001B[91mSkriv ett heltal mellan 1 och 4.\u001B[0m");
+                System.out.println("\n\u001B[91mSkriv ett heltal mellan 1 och 5.\u001B[0m");
                 input.nextLine();
                 continue;
             }
@@ -48,23 +52,22 @@ public class Main {
 
                     register.createAnimal(name, species, age);
                 }
-                case 2 -> {
-                    if (register == null) {
-                        System.out.println("Det finns inga sparade djur.");
-                    }
-                    register.printAll();
-                }
+
+                case 2 -> register.printAll();
 
                 case 3 -> {
                     System.out.print("\n\u001B[93mSkriv namnet på djuret du söker efter: \u001B[0m");
-                    String name = input.nextLine();
-                    System.out.println();
-                    register.findAnimal(name);
+                    register.findAnimal(input.nextLine());
                 }
 
-                case 4 -> System.out.println("\u001B[92mProgrammet avslutas...\u001B[0m");
-                
-                default -> System.out.println("\n\u001B[91mVälj ett nummer mellan 1 och 3.\u001B[0m");
+                case 4 -> {
+                    System.out.print("\n\u001B[93mSkriv namnet på djuret du vill ta bort: \u001B[0m");
+                    register.removeAnimal(input.nextLine());
+                }
+
+                case 5 -> System.out.println("\u001B[92mProgrammet avslutas...\u001B[0m");
+
+                default -> System.out.println("\n\u001B[91mVälj ett nummer mellan 1 och 5.\u001B[0m");
             }
         }
     }
