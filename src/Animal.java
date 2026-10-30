@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal {
 
     private String name;
     private String species;
     private double age;
+    private List<WeightEntry> weightHistory = new ArrayList<>();
 
     public Animal(String name, String species, double age) {
         this.name = name;
@@ -38,5 +42,9 @@ public class Animal {
         System.out.println("\nNamn:\t" + name);
         System.out.println("Art:\t" + species);
         System.out.println("Ålder:\t" + age + " år");
+    }
+
+    public void addWeightEntry(WeightEntry entry) {
+        weightHistory.add(entry);
     }
 }

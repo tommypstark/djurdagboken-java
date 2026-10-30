@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,18 +7,19 @@ public class Main {
         AnimalRegister register = new AnimalRegister();
         int val = 0;
 
-        while (val != 6) {
+        while (val != 7) {
             System.out.println("\n\u001B[35m***  DJURDAGBOKEN  ***\u001B[0m");
             System.out.println("\u001B[96m1.\u001B[0m Lägg till djur");
             System.out.println("\u001B[96m2.\u001B[0m Visa alla djur");
             System.out.println("\u001B[96m3.\u001B[0m Sök efter djur");
             System.out.println("\u001B[96m4.\u001B[0m Redigera djur");
             System.out.println("\u001B[96m5.\u001B[0m Ta bort djur");
-            System.out.println("\u001B[96m6.\u001B[0m Avsluta");
+            System.out.println("\u001B[96m6.\u001B[0m Registrera vikt");
+            System.out.println("\u001B[96m7.\u001B[0m Avsluta");
             System.out.print("\u001B[93mDitt val: \u001B[0m");
 
             if (!input.hasNextInt()) {
-                System.out.println("\n\u001B[91mSkriv ett heltal mellan 1 och 6.\u001B[0m");
+                System.out.println("\n\u001B[91mSkriv ett heltal mellan 1 och 7.\u001B[0m");
                 input.nextLine();
                 continue;
             }
@@ -123,9 +125,40 @@ public class Main {
                     register.removeAnimal(input.nextLine());
                 }
 
-                case 6 -> System.out.println("\u001B[92mProgrammet avslutas...\u001B[0m");
+                case 6 -> {
+                    System.out.print("\nVilket djur vill du registrera vikt för? ");
+                    String name = input.nextLine();
+                    Animal animal = register.getAnimal(name);
+                    if (animal == null) {
+                        System.out.println("\n\u001B[91mInget djur hittades.\u001B[0m");
+                        continue;
+                    }
 
-                default -> System.out.println("\n\u001B[91mVälj ett nummer mellan 1 och 6.\u001B[0m");
+                    System.out.print("\n\u001B[93mAnge djurets vikt i gram: \u001B[0m");
+
+                    if (!input.hasNextInt()) {
+                        System.out.println("\n\u001B[91mVikten måste vara ett heltal.\u001B[0m");
+                        input.nextLine();
+                        continue;
+                    }
+
+                    int weight = input.nextInt();
+                    input.nextLine();
+
+                    if (weight <= 0) {
+                        System.out.println("\n\u001B[91mVikten måste vara större än 0.\u001B[0m");
+                        continue;
+                    }
+
+                    WeightEntry entry = new WeightEntry(LocalDate.now(), weight);
+
+                    animal.addWeightEntry(entry);
+                    System.out.println("\n\u001B[92mVikten har registrerats!\u001B[0m");
+                }
+
+                case 7 -> System.out.println("\u001B[92mProgrammet avslutas...\u001B[0m");
+
+                default -> System.out.println("\n\u001B[91mVälj ett nummer mellan 1 och 7.\u001B[0m");
             }
         }
     }

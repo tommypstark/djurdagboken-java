@@ -59,4 +59,16 @@ public class AnimalRegister {
 
         System.out.print("\n\u001B[91mInget djur hittades.\u001B[0m\n");
     }
+
+    public void addWeightEntry(String name, WeightEntry entry) {
+        for (Animal animal : animals) {
+            if (animal.getName().equalsIgnoreCase(name)) {
+                animal.addWeightEntry(entry);
+                return;
+            }
+        }
+
+        System.out.println("\n\u001B[91mInget djur hittades.\u001B[0m");
+    }
+
 }
