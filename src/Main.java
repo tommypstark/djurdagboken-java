@@ -9,7 +9,7 @@ public class Main {
         int val = 0;
 
         while (val != 4) {
-            System.out.println("\n\u001B[35m***  DJURDAGBOKEN  ***\u001B[0m");
+            System.out.println("\n\u001B[35m***  DJURDAGBOKEN 0.8 ***\u001B[0m");
             System.out.println("\u001B[96m1.\u001B[0m Lägg till djur");
             System.out.println("\u001B[96m2.\u001B[0m Visa alla djur");
             System.out.println("\u001B[96m3.\u001B[0m Sök efter djur");
@@ -132,7 +132,7 @@ public class Main {
                                 System.out.println("\n\u001B[92mVikthistorik för " + animal.getName() + ":\u001B[0m");
 
                                 for (WeightEntry entry : animal.getWeightHistory()) {
-                                    System.out.println(entry.getDate() + " - " + entry.getWeight() + " g");
+                                    System.out.println(entry.getDate() + ": " + entry.getWeight() + " g");
                                 }
                             }
                         }
